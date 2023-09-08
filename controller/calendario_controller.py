@@ -61,19 +61,34 @@ calendar.day_abbr = [d.capitalize() for d in calendar.day_abbr]
 
 hoje_DataTime = datetime.now()
 
-# Cria o arquivo calendario.html em utf_8
-cal = open('view/templates/calendario.html', 'w', encoding='UTF-8')
-c = CustomHTMLCal(calendar.SUNDAY)
+@app.route('/calendario/<mes>')
+def calendario(mes): 
+    if mes == '<mes>':
+        mes = hoje_DataTime.month
+        # Cria o arquivo calendario.html em utf_8
+        cal = open('view/templates/calendario.html', 'w', encoding='UTF-8')
+        c = CustomHTMLCal(calendar.SUNDAY)
+        
+        cal.write(c.formatmonth(hoje_DataTime.year,mes))
 
-cal.write(c.formatmonth(hoje_DataTime.year, hoje_DataTime.month))
+        cal.close()
+        return render_template('calendario.html', mes = mes)
+    else:
+        
+        # Cria o arquivo calendario.html em utf_8
+        cal = open('view/templates/calendario.html', 'w', encoding='UTF-8')
+        c = CustomHTMLCal(calendar.SUNDAY)
+        mes = int(mes)
+        mes+=1
 
-cal.close()
+        cal.write(c.formatmonth(hoje_DataTime.year,mes))
 
+        cal.close()
+        return render_template('calendario.html', mes = mes)
+        
+    
 
-
-@app.route('/calendario')
-def calendario():
-     return render_template('calendario.html')
+    
 
 
 

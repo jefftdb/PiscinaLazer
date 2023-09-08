@@ -2,10 +2,19 @@
 $(document).ready(function(){
                       
            $(function(){
-               $("#conteudo-pagina-lida").load("/calendario"); 
+               $("#conteudo-pagina-lida").load("/calendario/<mes>"); 
            });
        
 });
+
+let element = document.getElementById('mais');
+  element.addEventListener('click',function(){
+    $(document).ready(function(){
+                      
+     alert('Entrou aqui sim')
+});                    
+
+})
 
    
 // Script para o botão flutuante voltar ao topo
