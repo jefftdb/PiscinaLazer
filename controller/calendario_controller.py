@@ -3,7 +3,14 @@ from app import app
 import calendar
 import locale
 from datetime import datetime
+from datetime import date
 
+data1 = date(2023,9,11)
+data2 = date(2023,9,23)
+data3 = date(2023,9,10)
+data4 = date(2023,9,28)
+
+datas_reservadas = data1,data2,data3,data4
 
 
 class CustomHTMLCal(calendar.HTMLCalendar):
@@ -11,6 +18,7 @@ class CustomHTMLCal(calendar.HTMLCalendar):
     #cssclass_month_head = "text-center month-head"
     #cssclass_month = "text-center month table"
     #cssclass_year = "text-italic lead"
+
 
     cssclass_month_head = "header_title"
     cssclasses = [style + " day-number" for style in calendar.HTMLCalendar.cssclasses]
@@ -64,11 +72,13 @@ class CustomHTMLCal(calendar.HTMLCalendar):
     def formatday(self, day, weekday):
                         
         hoje = datetime.now().date()
-        
-        
+        for data in datas_reservadas:
+            if day == data.day:
+                return '<div class="%s day-reserved">%d</div>' % (self.cssclasses[weekday], day)
+                
         # Adicione a classe "hoje" ao dia de hoje
         if hoje.day == day and hoje.month == hoje_DataTime.month:
-            return '<div class="%s hoje">%d</div>' % (self.cssclasses[weekday], day)
+            return '<div class="%s day-today">%d</div>' % (self.cssclasses[weekday], day)
         
                                            
         else:
