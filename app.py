@@ -12,7 +12,7 @@ from controller.calendario_controller import *
 
 @app.route('/')
 def index():
-    return render_template('index.html',todasAsImagens = todasAsImagens,hoje = hoje_DataTime)
+    return render_template('index.html',todasAsImagens = todasAsImagens)
 
 
 

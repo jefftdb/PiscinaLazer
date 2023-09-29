@@ -2,13 +2,25 @@
 $(document).ready(function(){
                       
            $(function(){
-               $("#conteudo-pagina-lida").load("/calendario"); 
+               $("#conteudo-calendario").load("/calendario"); 
            });
        
 });
+/*
+function exibeCalendario(){
+  $(function(){
+    $("#conteudo-calendario").load("/calendario");
+    
+});
+}
 
+function load() {
+  var botaoMais = document.getElementById("botaoMais");
+  botaoMais.addEventListener("click", exibeCalendario, false);
+}
 
-
+*/
+document.addEventListener("DOMContentLoaded", load, false);
    
 // Script para o botão flutuante voltar ao topo
 function toggleFAB(fab){
